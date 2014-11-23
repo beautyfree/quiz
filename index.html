@@ -1,0 +1,300 @@
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+<title>Devall - HeadHunter</title>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.firebase.com/js/client/2.0.4/firebase.js"></script>
+<script type="text/javascript" src="js/jQuizler.js"></script>
+
+<link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" href="css/jQuizler.css" />
+
+<style>
+    * {
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        outline: none;
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+    }
+
+
+    body {
+        margin: 0 auto;
+        max-width: 400px;
+    }
+
+    .main-quiz-holder .start {
+        display: none;
+    }
+
+    #login_button {
+        display: none;
+    }
+</style>
+
+<script type="text/javascript">
+var questions = [
+    {
+        type: "choose",
+        question: "Уберите лишнее из основных концепций ООП",
+        answers: [
+            "Наследование",
+            "Полиморфизм",
+            "Абстракция",
+            "Инкапсуляция"
+        ],
+        correct: [3]
+    },
+    {
+        type: "choose",
+        question: "Какой из вариантов объявления функции в JavaScript правильный: <code>var func = function() {};</code> или <code>function func() {}</code>",
+        answers: [
+            "function func() {}",
+            "Оба варианта правильные",
+            "Оба варианта неправильные",
+            "var func = function() {};"
+        ],
+        correct: [2]
+    },
+    {
+        type: "choose",
+        question: "Есть строка на PHP: $str = \"123456\". Как из этой строки получить подстроку \"5\"?",
+        answers: [
+            "$str[5];",
+            "$str[6];",
+            "$str[];",
+            "$str[4];"
+        ],
+        correct: [4]
+    },
+    {
+        type: "choose",
+        question: "Какого оператора в PHP не существует?",
+        answers: [
+            "!===",
+            ">=",
+            "!==",
+            "+="
+        ],
+        correct: [1]
+    },
+    {
+        type: "choose",
+        question: "Как сделать редирект (например, на google.ru) на PHP?",
+        answers: [
+            "header(\"Location: http://google.ru\");",
+            "location.href = \"http://google.ru\";",
+            "header(\"Redirect: http://google.ru\");",
+            "document.location = \"http://google.ru\";"
+        ],
+        correct: [1]
+    },
+    {
+        type: "choose",
+        question: "Есть в PHP массив $aParams. Как вывести все элементы массива $aParams?",
+        answers: [
+            "print_r($aParams);",
+            "print $aParams;",
+            "echo $aParams;",
+            "Это возможно сделать только через цикл."
+        ],
+        correct: [1]
+    },
+    {
+        type: "choose",
+        question: "Каков результат выполнения у данного скрипта:<br/> <code>&lt;?php <br/> $x = 5;<br/> echo 'Переменная $x = 5';<br/> ?&gt;</code>",
+        answers: [
+            "Ошибка, поскольку строки с переменными должны быть всегда в двойных кавычках.",
+            "Переменная x = 5",
+            "Переменная $x = 5",
+            "Переменная 5 = 5"
+        ],
+        correct: [3]
+    },
+    {
+        type: "choose",
+        question: "Какой селектор CSS написан с ошибкой?",
+        answers: [
+            "input.text",
+            "div p",
+            "input[\"text\"]",
+            "input[type=\"text\"]"
+        ],
+        correct: [3]
+    },
+    {
+        type: "choose",
+        question: "В каком из представленных ниже вариантов содержится явная ошибка:",
+        answers: [
+            "p text (font-size: 150%;}",
+            "p span#text (font-size: 150%;}",
+            "p span {font-size: 150%;}",
+            "p {font-size: 150%;}"
+        ],
+        correct: [1]
+    },
+    {
+        type: "choose",
+        question: "Какое принципиальное отличие в HTML селектора ID от селектора CLASS?",
+        answers: [
+            "Никакого отличия между ними нет.",
+            "Разница только в наборе свойств, который может быть использован для этих селекторов. Например, для ID нельзя задавать свойство border, а для CLASS можно.",
+            "CLASS должен быть уникальным на странице, а одинаковый ID может быть у нескольких элементов.",
+            "ID должен быть уникальным на странице, а одинаковый CLASS может быть у нескольких элементов."
+        ],
+        correct: [4]
+    },
+    {
+        type: "choose",
+        question: "Какой вариант задания цвета НЕ сработает?",
+        answers: [
+            "color: #000;",
+            "color: #hhh;",
+            "color: #aaa;",
+            "color: #aaaaaa;"
+        ],
+        correct: [2]
+    },
+    {
+        type: "choose",
+        question: "Какое свойство используется для задания полей у блока?",
+        answers: [
+            "direction",
+            "padding",
+            "position",
+            "margin"
+        ],
+        correct: [2]
+    },
+    {
+        type: "choose",
+        question: "Как в SQL удалить таблицу \"my_table\":",
+        answers: [
+            "DELETE \"my_table\"",
+            "DELETE FROM \"my_table\"",
+            "DROP TABLE \"my_table\"",
+            "DELETE TABLE \"my_table\""
+        ],
+        correct: [3]
+    },
+    {
+        type: "choose",
+        question: "Что делает в SQL конструкция: <br/> <code>ORDER BY ASC</code>",
+        answers: [
+            "ASC вообще не существует",
+            "ASC - это функция, которая здесь некорректно использована",
+            "Сортирует записи по убыванию",
+            "Сортирует записи по возрастанию"
+        ],
+        correct: [4]
+    },
+    {
+        type: "choose",
+        question: "Выберите верное утверждение относительно индекса в SQL:",
+        answers: [
+            "Индекс позволяет сэкономить место, занимаемое таблицей",
+            "Индекс позволяет ускорить выборку с тем полем, для которого он сделан",
+            "Индекс ускоряет добавление записей в таблицу",
+            "Индекс ускоряет абсолютно любые запросы с таблицей"
+        ],
+        correct: [2]
+    }
+];
+
+</script>
+</head>
+
+<body>
+
+    <div id="jQuizler" class="main-quiz-holder">
+        <h4>Ты следующий?</h4>
+
+        Мы команда веб-разработчиков включая дизайнера занимающаяся:
+        <ul>
+            <li>разработкой новых продуктов в том числе инновационных</li>
+            <li>реализацией заказов в области веб-разработки</li>
+        </ul>
+
+        <p>Будем рады поприветствовать для взаимного развития и сотрудничества в этих направлениях.</p>
+        <p>Предлагаем тебе пройти тест!</p>
+
+        <div id="login_button" onclick="VK.Auth.login(authInfo);"></div>
+        <button class="start btn btn-large">Старт</button>
+    </div>
+    <!--<div id="logout_button" onclick="VK.Auth.logout();">Выйти</div>-->
+
+    <script src="//vk.com/js/api/openapi.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var firebaseUrl = 'https://fiery-heat-4174.firebaseio.com';
+        var user = {};
+
+
+        VK.init({
+            apiId: 2003231
+        });
+        function authInfo(response) {
+            if (response.session) {
+                user.id = response.session.mid;
+
+                var userRef = new Firebase(firebaseUrl + '/users/' + user.id + '/dates');
+                userRef.child('created_at').once('value', function(snapshot) {
+                    var timestamp = new Date().getTime();
+                    var exists = (snapshot.val() !== null);
+                    if(!exists) {
+                        userRef.update({
+                            created_at: timestamp,
+                            last_visited_at: timestamp
+                        });
+                    } else {
+                        userRef.update({
+                            last_visited_at: timestamp
+                        });
+                    }
+                });
+
+                $(".main-quiz-holder .start").show();
+                $("#login_button").hide();
+            } else {
+                $(".main-quiz-holder .start").hide();
+                $("#login_button").show();
+            }
+
+        }
+        VK.Auth.getLoginStatus(authInfo);
+        VK.UI.button('login_button');
+
+
+        $("document").ready(function(){
+            $("#jQuizler").jQuizler(questions);
+            $("#jQuizler").on('final', function(event, params) {
+
+                var userRef = new Firebase(firebaseUrl + '/users/' + user.id);
+                userRef.child('dates/quiz_done_at').once('value', function(snapshot) {
+                    var exists = (snapshot.val() !== null);
+                    if(!exists) {
+                        var timestamp = new Date().getTime();
+                        userRef.child('dates').update({
+                            quiz_done_at: timestamp
+                        });
+                        userRef.child('results/first').update({
+                            percent: params.percent,
+                            answers: params.results
+                        });
+                    } else {
+                        userRef.child('results/last').update({
+                            percent: params.percent,
+                            answers: params.results
+                        });
+                        userRef.child('count_retries').transaction(function(currentValue) {
+                            return (currentValue||0) + 1
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
