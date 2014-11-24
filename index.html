@@ -103,7 +103,7 @@
                     }
                     html += '<tr><td>'+pos.id+'</td><td>'+pos.first+'</td><td style="color: #aaa">'+pos.last+'</td></tr>';
 
-                    //usersRef.child(key).setPriority(-childSnapshot.val().results.first.percent);
+                    //usersRef.child(snapshot.key()).setPriority(-snapshot.val().results.first.percent);
                 }
             });
             usersRef.on('value', function(snapshot) {
@@ -129,7 +129,7 @@
                             percent: params.percent,
                             answers: params.results
                         });
-                        userRef.setPriority(params.percent);
+                        userRef.setPriority(-params.percent);
                     } else {
                         userRef.child('results/last').update({
                             percent: params.percent,
