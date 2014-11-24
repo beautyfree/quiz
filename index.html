@@ -121,23 +121,26 @@
 
 
         /* Рейтинг*/
-        var html = '';
-        var usersRef = new Firebase(firebaseUrl + '/users');
-        usersRef.orderByPriority().on("child_added", function(snapshot) {
-            if (typeof snapshot.val().results !== 'undefined') {
-                var pos = {
-                    id: snapshot.key(),
-                    first: snapshot.val().results.first.percent + '%',
-                    last: (typeof snapshot.val().results.last != 'undefined' ? snapshot.val().results.last.percent + '%' : '')
-                }
-                html += '<tr><td>'+pos.id+'</td><td>'+pos.first+'</td><td style="color: #aaa">'+pos.last+'</td></tr>';
+        function renderRating() {
+            var html = '';
+            var usersRef = new Firebase(firebaseUrl + '/users');
+            usersRef.orderByPriority().on("child_added", function(snapshot) {
+                if (typeof snapshot.val().results !== 'undefined') {
+                    var pos = {
+                        id: snapshot.key(),
+                        first: snapshot.val().results.first.percent + '%',
+                        last: (typeof snapshot.val().results.last != 'undefined' ? snapshot.val().results.last.percent + '%' : '')
+                    }
+                    html += '<tr><td>'+pos.id+'</td><td>'+pos.first+'</td><td style="color: #aaa">'+pos.last+'</td></tr>';
 
-                //usersRef.child(key).setPriority(-childSnapshot.val().results.first.percent);
-            }
-        });
-        usersRef.on('value', function(snapshot) {
-            $('#rating tbody').append(html);
-        });
+                    //usersRef.child(key).setPriority(-childSnapshot.val().results.first.percent);
+                }
+            });
+            usersRef.on('value', function(snapshot) {
+                $('#rating tbody').html(html);
+            });
+        }
+        renderRating();
 
 
         $("document").ready(function(){
@@ -166,6 +169,9 @@
                             return (currentValue||0) + 1
                         });
                     }
+
+                    // Обновляем таблицу с рейтингом
+                    renderRating();
                 });
             });
             $("#jQuizler").on('start', function() {
