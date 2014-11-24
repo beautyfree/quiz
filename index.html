@@ -30,6 +30,10 @@
         display: none;
     }
 
+    #rating {
+        display: none;
+    }
+
     #login_button {
         display: none;
     }
@@ -54,6 +58,7 @@
 
         <div id="login_button" onclick="VK.Auth.login(authInfo);"></div>
         <button class="start btn btn-large">Старт</button>
+        <button class="rating btn btn-large btn-success pull-right">Рейтинг</button>
     </div>
 
 
@@ -78,20 +83,6 @@
     <script type="text/javascript">
         var firebaseUrl = 'https://fiery-heat-4174.firebaseio.com';
         var user = {};
-
-        var usersRef = new Firebase(firebaseUrl + '/users');
-        usersRef.orderByPriority().on("child_added", function(snapshot) {
-            if (typeof snapshot.val().results !== 'undefined') {
-                var pos = {
-                    id: snapshot.key(),
-                    first: snapshot.val().results.first.percent + '%',
-                    last: (typeof snapshot.val().results.last != 'undefined' ? snapshot.val().results.last.percent + '%' : '')
-                }
-                $('#rating tbody').append('<tr><td>'+pos.id+'</td><td>'+pos.first+'</td><td style="color: #aaa">'+pos.last+'</td></tr>');
-
-                //usersRef.child(key).setPriority(-childSnapshot.val().results.first.percent);
-            }
-        });
 
         VK.init({
             apiId: 2003231
@@ -129,6 +120,26 @@
         VK.UI.button('login_button');
 
 
+        /* Рейтинг*/
+        var html = '';
+        var usersRef = new Firebase(firebaseUrl + '/users');
+        usersRef.orderByPriority().on("child_added", function(snapshot) {
+            if (typeof snapshot.val().results !== 'undefined') {
+                var pos = {
+                    id: snapshot.key(),
+                    first: snapshot.val().results.first.percent + '%',
+                    last: (typeof snapshot.val().results.last != 'undefined' ? snapshot.val().results.last.percent + '%' : '')
+                }
+                html += '<tr><td>'+pos.id+'</td><td>'+pos.first+'</td><td style="color: #aaa">'+pos.last+'</td></tr>';
+
+                //usersRef.child(key).setPriority(-childSnapshot.val().results.first.percent);
+            }
+        });
+        usersRef.on('value', function(snapshot) {
+            $('#rating tbody').append(html);
+        });
+
+
         $("document").ready(function(){
             $("#jQuizler").jQuizler(questions);
             $("#jQuizler").on('final', function(event, params) {
@@ -156,6 +167,13 @@
                         });
                     }
                 });
+            });
+            $("#jQuizler").on('start', function() {
+                $('#rating').hide();
+            });
+
+            $('.rating').on('click', function() {
+                $('#rating').toggle();
             });
         });
     </script>

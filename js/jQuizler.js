@@ -27,6 +27,7 @@
 
             $(this).find(".start").click(function(){
                 $(this).off('click');
+                $(that).trigger('start');
 
                 $(".intro").hide();
                 $(this).css("text-align", "left");

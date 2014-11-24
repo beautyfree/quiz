@@ -37,11 +37,11 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5325301" vertical-offset="986" max-vertical-offset="2856">
-              <caret line="84" column="0" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
+            <state vertical-scroll-proportion="-2.1542168" vertical-offset="2332" max-vertical-offset="3162">
+              <caret line="32" column="5" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
               <folding>
                 <element signature="n#style#0;n#th#1;n#tr#1;n#thead#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <marker date="1416788432228" expanded="true" signature="3024:3035" placeholder="..." />
+                <marker date="1416789319722" expanded="true" signature="4374:4385" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -60,16 +60,16 @@
       <file leaf-file-name="jQuizler.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/jQuizler.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-26.107143" vertical-offset="2397" max-vertical-offset="4794">
-              <caret line="184" column="28" selection-start-line="184" selection-start-column="28" selection-end-line="184" selection-end-column="28" />
+            <state vertical-scroll-proportion="-12.75" vertical-offset="153" max-vertical-offset="4811">
+              <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
               <folding>
-                <marker date="1416707663833" expanded="true" signature="2503:2515" placeholder="..." />
-                <marker date="1416707663833" expanded="true" signature="4474:4484" placeholder="..." />
-                <marker date="1416707663833" expanded="true" signature="4701:4711" placeholder="..." />
-                <marker date="1416707663833" expanded="true" signature="5002:5012" placeholder="..." />
-                <marker date="1416707663833" expanded="true" signature="6219:6237" placeholder="..." />
-                <marker date="1416707663833" expanded="true" signature="8255:8271" placeholder="..." />
-                <marker date="1416707663833" expanded="true" signature="8481:8516" placeholder="..." />
+                <marker date="1416789246675" expanded="true" signature="2545:2557" placeholder="..." />
+                <marker date="1416789246675" expanded="true" signature="4516:4526" placeholder="..." />
+                <marker date="1416789246675" expanded="true" signature="4743:4753" placeholder="..." />
+                <marker date="1416789246675" expanded="true" signature="5044:5054" placeholder="..." />
+                <marker date="1416789246675" expanded="true" signature="6261:6279" placeholder="..." />
+                <marker date="1416789246675" expanded="true" signature="8297:8313" placeholder="..." />
+                <marker date="1416789246675" expanded="true" signature="8523:8558" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -90,10 +90,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/js/jQuizler.js" />
         <option value="$PROJECT_DIR$/CNAME" />
         <option value="$PROJECT_DIR$/css/jQuizler.css" />
         <option value="$PROJECT_DIR$/js/questions.js" />
+        <option value="$PROJECT_DIR$/js/jQuizler.js" />
         <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
@@ -284,22 +284,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/jQuizler.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-26.107143" vertical-offset="2397" max-vertical-offset="4794">
-          <caret line="184" column="28" selection-start-line="184" selection-start-column="28" selection-end-line="184" selection-end-column="28" />
-          <folding>
-            <marker date="1416707663833" expanded="true" signature="2503:2515" placeholder="..." />
-            <marker date="1416707663833" expanded="true" signature="4474:4484" placeholder="..." />
-            <marker date="1416707663833" expanded="true" signature="4701:4711" placeholder="..." />
-            <marker date="1416707663833" expanded="true" signature="5002:5012" placeholder="..." />
-            <marker date="1416707663833" expanded="true" signature="6219:6237" placeholder="..." />
-            <marker date="1416707663833" expanded="true" signature="8255:8271" placeholder="..." />
-            <marker date="1416707663833" expanded="true" signature="8481:8516" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CNAME">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="897">
@@ -324,13 +308,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/js/jQuizler.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.75" vertical-offset="153" max-vertical-offset="4811">
+          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding>
+            <marker date="1416789246675" expanded="true" signature="2545:2557" placeholder="..." />
+            <marker date="1416789246675" expanded="true" signature="4516:4526" placeholder="..." />
+            <marker date="1416789246675" expanded="true" signature="4743:4753" placeholder="..." />
+            <marker date="1416789246675" expanded="true" signature="5044:5054" placeholder="..." />
+            <marker date="1416789246675" expanded="true" signature="6261:6279" placeholder="..." />
+            <marker date="1416789246675" expanded="true" signature="8297:8313" placeholder="..." />
+            <marker date="1416789246675" expanded="true" signature="8523:8558" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5325301" vertical-offset="986" max-vertical-offset="2856">
-          <caret line="84" column="0" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
+        <state vertical-scroll-proportion="-2.1542168" vertical-offset="2332" max-vertical-offset="3162">
+          <caret line="32" column="5" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
           <folding>
             <element signature="n#style#0;n#th#1;n#tr#1;n#thead#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1416788432228" expanded="true" signature="3024:3035" placeholder="..." />
+            <marker date="1416789319722" expanded="true" signature="4374:4385" placeholder="..." />
           </folding>
         </state>
       </provider>
