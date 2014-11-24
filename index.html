@@ -55,7 +55,23 @@
         <div id="login_button" onclick="VK.Auth.login(authInfo);"></div>
         <button class="start btn btn-large">Старт</button>
     </div>
-    
+
+
+    <table id="rating" class="table table-bordered table-condensed">
+        <thead>
+            <tr>
+                <th rowspan="2">ID</th>
+                <th colspan="2">Результаты прохождения</th>
+            </tr>
+            <tr>
+                <th>Первое</th>
+                <th style="color: #aaa">Последнее</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
     <!--<div id="logout_button" onclick="VK.Auth.logout();">Выйти</div>-->
 
     <script src="//vk.com/js/api/openapi.js" type="text/javascript"></script>
@@ -67,9 +83,40 @@
         VK.init({
             apiId: 2003231
         });
+
         function authInfo(response) {
             if (response.session) {
                 user.id = response.session.mid;
+
+
+
+                var usersRef = new Firebase(firebaseUrl + '/users');
+                usersRef.orderByPriority().on("child_added", function(snapshot) {
+                    if (typeof snapshot.val().results !== 'undefined') {
+                        console.log(snapshot.key(), snapshot.val().results.first.percent);
+
+                        var pos = {
+                            id: snapshot.key(),
+                            first: snapshot.val().results.first.percent + '%',
+                            last: (typeof snapshot.val().results.last != 'undefined' ? snapshot.val().results.last.percent + '%' : '')
+                        }
+                        $('#rating tbody').append('<tr><td>'+pos.id+'</td><td>'+pos.first+'</td><td style="color: #aaa">'+pos.last+'</td></tr>');
+                    }
+                });
+
+                /*
+                usersRef.once('value', function(allUsers) {
+                    allUsers.forEach(function(childSnapshot) {
+                        var key = childSnapshot.key();
+                        var childData = childSnapshot.val();
+
+                        if (typeof childSnapshot.val().results !== 'undefined') {
+                            console.log(key, childSnapshot.val().results.first.percent);
+
+                            usersRef.child(key).setPriority(-childSnapshot.val().results.first.percent);
+                        }
+                    });
+                });*/
 
                 var userRef = new Firebase(firebaseUrl + '/users/' + user.id + '/dates');
                 userRef.child('created_at').once('value', function(snapshot) {
@@ -115,6 +162,7 @@
                             percent: params.percent,
                             answers: params.results
                         });
+                        userRef.setPriority(params.percent);
                     } else {
                         userRef.child('results/last').update({
                             percent: params.percent,
