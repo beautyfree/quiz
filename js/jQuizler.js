@@ -188,6 +188,7 @@
                         resultHTML += "<p style=\"margin: 14px 0px\">Вы ответили на " + Math.round(((rightAnswers * 100) / questions.length) * 100) / 100 + "% вопросов.</p>";
                         resultHTML += buttonsHTML;
                         resultHTML += "<p style=\"margin-top:25px; text-align: center\"><button class=\"btn btn-large tostart\">Просмотреть вопросы</button></p>";
+                        resultHTML += "<p style=\"margin-top:25px; text-align: center\"><span class=\"btn btn-large btn-success rating\">Посмотреть рейтинг</span></p>";
 
                         div.hide();
                         div.find(".notice").hide();
@@ -256,7 +257,8 @@
                     return false;
                 });
 
-                $(".results").click(function(e){
+                //$(".results").click(function(e){
+                $(".tostart").click(function(e){
                     $(".results").hide();
 
                     var question = $("#question-1");
