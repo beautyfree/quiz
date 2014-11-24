@@ -79,6 +79,19 @@
         var firebaseUrl = 'https://fiery-heat-4174.firebaseio.com';
         var user = {};
 
+        var usersRef = new Firebase(firebaseUrl + '/users');
+        usersRef.orderByPriority().on("child_added", function(snapshot) {
+            if (typeof snapshot.val().results !== 'undefined') {
+                var pos = {
+                    id: snapshot.key(),
+                    first: snapshot.val().results.first.percent + '%',
+                    last: (typeof snapshot.val().results.last != 'undefined' ? snapshot.val().results.last.percent + '%' : '')
+                }
+                $('#rating tbody').append('<tr><td>'+pos.id+'</td><td>'+pos.first+'</td><td style="color: #aaa">'+pos.last+'</td></tr>');
+
+                //usersRef.child(key).setPriority(-childSnapshot.val().results.first.percent);
+            }
+        });
 
         VK.init({
             apiId: 2003231
@@ -87,36 +100,6 @@
         function authInfo(response) {
             if (response.session) {
                 user.id = response.session.mid;
-
-
-
-                var usersRef = new Firebase(firebaseUrl + '/users');
-                usersRef.orderByPriority().on("child_added", function(snapshot) {
-                    if (typeof snapshot.val().results !== 'undefined') {
-                        console.log(snapshot.key(), snapshot.val().results.first.percent);
-
-                        var pos = {
-                            id: snapshot.key(),
-                            first: snapshot.val().results.first.percent + '%',
-                            last: (typeof snapshot.val().results.last != 'undefined' ? snapshot.val().results.last.percent + '%' : '')
-                        }
-                        $('#rating tbody').append('<tr><td>'+pos.id+'</td><td>'+pos.first+'</td><td style="color: #aaa">'+pos.last+'</td></tr>');
-                    }
-                });
-
-                /*
-                usersRef.once('value', function(allUsers) {
-                    allUsers.forEach(function(childSnapshot) {
-                        var key = childSnapshot.key();
-                        var childData = childSnapshot.val();
-
-                        if (typeof childSnapshot.val().results !== 'undefined') {
-                            console.log(key, childSnapshot.val().results.first.percent);
-
-                            usersRef.child(key).setPriority(-childSnapshot.val().results.first.percent);
-                        }
-                    });
-                });*/
 
                 var userRef = new Firebase(firebaseUrl + '/users/' + user.id + '/dates');
                 userRef.child('created_at').once('value', function(snapshot) {
