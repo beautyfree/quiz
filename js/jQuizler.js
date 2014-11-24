@@ -25,8 +25,8 @@
 
             $(this).html("<div class=\"intro\">" + $(this).html() + "</div>");
 
-            $(this).find(".start").click(function(){
-                $(this).off('click');
+            $(this).find(".start").on('click', function(){
+                //$(this).off('click');
                 $(that).trigger('start');
 
                 $(".intro").hide();
@@ -122,7 +122,7 @@
                 ///html += "<div style=\"margin:0px; clear:both\"></div>";
                 $(this).append(html);
 
-                $("div[id*='question-'] li").click(function(){
+                $("div[id*='question-'] li").on('click', function(){
                     if (!reviewQuiz) {
                         /*$(this).siblings().removeClass("selected");
                         $(this).toggleClass("selected");*/
@@ -134,7 +134,7 @@
 
 
 
-                $(".final").click(function(e){
+                $(".final").on('click', function(e){
                     var div = $(e.target).closest("div[id*='question-']");
                     var userAnswer = div.find("li.btn-info");
 
@@ -214,7 +214,7 @@
                     return false;
                 });
 
-                $(".next").click(function(e){
+                $(".next").on('click', function(e){
                     var div = $(e.target).closest("div[id*='question-']");
                     var userAnswer = div.find("li.btn-info");
 
@@ -239,7 +239,7 @@
                     return false;
                 });
 
-                $(".prev").click(function(e){
+                $(".prev").on('click', function(e){
                     var div = $(e.target).closest("div[id*='question-']");
 
                     var prevId = parseInt(div.attr('id').replace('question-', '')) - 1;
@@ -258,7 +258,7 @@
                 });
 
                 //$(".results").click(function(e){
-                $(".tostart").click(function(e){
+                $(document).on('click', '.tostart', function(e){
                     $(".results").hide();
 
                     var question = $("#question-1");
