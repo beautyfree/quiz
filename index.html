@@ -147,6 +147,17 @@
             });
             $("#jQuizler").on('start', function() {
                 $('#rating').hide();
+
+                var userRef = new Firebase(firebaseUrl + '/users/' + user.id);
+                userRef.child('dates/quiz_start_at').once('value', function(snapshot) {
+                    var exists = (snapshot.val() !== null);
+                    if(!exists) {
+                        var timestamp = new Date().getTime();
+                        userRef.child('dates').update({
+                            quiz_start_at: timestamp
+                        });
+                    }
+                });
             });
 
             $(document).on('click', '.rating', function() {
