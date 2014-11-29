@@ -131,6 +131,8 @@
                         });
                         userRef.setPriority(-params.percent);
                     } else {
+
+
                         userRef.child('results/last').update({
                             percent: params.percent,
                             answers: params.results
